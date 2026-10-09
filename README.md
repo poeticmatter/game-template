@@ -4,6 +4,7 @@ The starting point for every game in the [game lab](https://poeticmatter.github.
 
 - **Live play** over PeerJS (peer to peer, no server), with spectators
 - **Async play** backed by Supabase (turns are saved, so players can move at any time)
+- **Hot seat**: both players share one device, with a pass-the-device screen between inputs
 - A lobby, share links, reconnection, and GitHub Pages deployment
 
 The example game in `src/game/` is rock-paper-scissors. Replace it with your own.
@@ -36,6 +37,7 @@ src/
 │   ├── types.ts     #   GameModule / GameRules contracts
 │   ├── usePeerHost.ts, usePeerGuest.ts   # live play (commit-and-hold)
 │   ├── useAsyncMatch.ts, asyncMatchApi.ts # async play
+│   ├── useHotSeatMatch.ts                 # hot seat (one device, offline)
 │   └── Lobby.tsx, StatusScreens.tsx, roomLink.ts
 └── App.tsx          # wires the game into the platform
 ```
@@ -46,7 +48,7 @@ A game provides a `GameModule` (see `src/platform/types.ts`):
 
 - `rules.createInitialState(settings)` and `rules.resolveTurn(state, p1Plan, p2Plan)`. These must be **pure and deterministic**, because in async play either client may resolve a turn.
 - The state and every plan carry `turn: number`, which the transports use to reject stale plans.
-- `Board` receives `state`, `role` (`1 | 2 | 'spectator'`), `hasCommitted` and `onSubmitPlan`.
+- `Board` receives `state`, `role` (`1 | 2 | 'spectator'`), `hasCommitted`, `onSubmitPlan` and `seating`. In hot seat, `seating` is `'hot_seat'` and `role` is whichever player holds the device, so name players by number rather than "You".
 - `SettingsForm` edits the settings in the lobby.
 
 The platform is copied into each game rather than shared as a package. Change it freely for a particular game.

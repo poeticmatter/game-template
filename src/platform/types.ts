@@ -9,8 +9,17 @@ export type PlayerSlot = 1 | 2
 
 export type UserRole = PlayerSlot | 'spectator'
 
-/** How the two players are connected. */
+/** How the two players of an online match are connected. */
 export type Transport = 'live' | 'async'
+
+/** What the lobby offers: an online transport, or both players sharing this device. */
+export type PlayMode = Transport | 'hot_seat'
+
+/**
+ * Who is looking at the board. In a hot-seat match both players read the same screen,
+ * so the board should name players by number rather than calling one of them "You".
+ */
+export type Seating = 'remote' | 'hot_seat'
 
 export type ConnectionStatus =
   | 'connecting'
@@ -52,6 +61,7 @@ export interface BoardProps<State, Plan> {
   /** True once this player has committed a plan for the current turn. */
   hasCommitted: boolean
   onSubmitPlan: (plan: Plan) => void
+  seating: Seating
 }
 
 export interface GameModule<Settings, State extends TurnBasedState, Plan extends TurnPlan> {

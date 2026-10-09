@@ -1,4 +1,5 @@
 import { buildRoomUrl, type RoomLink } from './roomLink'
+import type { PlayerSlot } from './types'
 
 function returnToLobby() {
   window.location.href = window.location.pathname
@@ -48,6 +49,22 @@ export function WaitingForPartnerScreen({ room }: { room: RoomLink }) {
         <p className="text-neutral-500 text-xs">Anyone else who opens the link watches as a spectator.</p>
       )}
       <p className="text-neutral-600 text-xs font-mono">Room: {room.code}</p>
+    </div>
+  )
+}
+
+/** Hides the board between hot-seat inputs so the next player can't see the last one's. */
+export function HandoffScreen({ slot, onReady }: { slot: PlayerSlot; onReady: () => void }) {
+  return (
+    <div className="min-h-screen flex flex-col items-center justify-center gap-6 p-6 text-center">
+      <h2 className="text-2xl font-semibold">Pass the device to Player {slot}</h2>
+      <p className="text-neutral-500 text-sm">Player {slot}, press Ready when the other player isn't looking.</p>
+      <button
+        onClick={onReady}
+        className="px-8 py-3 bg-blue-600 hover:bg-blue-500 rounded-xl text-white font-semibold text-lg transition-colors"
+      >
+        Ready
+      </button>
     </div>
   )
 }
