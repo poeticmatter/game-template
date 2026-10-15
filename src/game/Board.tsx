@@ -1,4 +1,4 @@
-import type { BoardProps, PlayerSlot, Seating, UserRole } from '../platform/types'
+import type { BoardProps, PlayerSlot, Seating, UserRole } from 'game-kit/simultaneous'
 import type { Hand, RoundResult, RpsPlan, RpsState } from './types'
 
 const HANDS: Hand[] = ['rock', 'paper', 'scissors']

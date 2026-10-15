@@ -1,9 +1,17 @@
 @import "tailwindcss";
+@import "game-kit/theme.css";
 
-html, body, #root {
-  background-color: #171717;
-  color: #ffffff;
-  min-height: 100vh;
-  margin: 0;
-  padding: 0;
+/* GameKit's screens (lobby, waiting, handoff) use these tokens; this template's
+   example game is dark, so they are set to match it. Change them to restyle. */
+@theme {
+  --color-ground: #171717;
+  --color-paper: #262626;
+  --color-ink: #ffffff;
+  --color-ink-soft: #a3a3a3;
+  --color-ink-faint: #737373;
+  --color-rule: #404040;
+  --color-slot: #404040;
+  --color-accent: #2563eb;
+  --color-on-accent: #ffffff;
+  --color-alert: #fbbf24;
 }

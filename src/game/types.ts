@@ -1,4 +1,4 @@
-import type { PlayerSlot } from '../platform/types'
+import type { PlayerSlot } from 'game-kit/simultaneous'
 
 export type Hand = 'rock' | 'paper' | 'scissors'
 

@@ -1,4 +1,4 @@
-import type { SettingsFormProps } from '../platform/types'
+import type { SettingsFormProps } from 'game-kit/simultaneous'
 import type { RpsSettings } from './types'
 
 const TARGET_SCORE_OPTIONS = [1, 3, 5]
