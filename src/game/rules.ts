@@ -1,4 +1,4 @@
-import type { GameRules, PlayerSlot } from '../platform/types'
+import type { GameRules, PlayerSlot } from 'game-kit/simultaneous'
 import type { Hand, RpsPlan, RpsSettings, RpsState } from './types'
 
 const BEATS: Record<Hand, Hand> = {
