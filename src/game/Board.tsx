@@ -74,7 +74,7 @@ export function RpsBoard({ state, role, hasCommitted, onSubmitPlan, seating }: B
       )}
 
       {hasCommitted && !isOver && <p className="text-neutral-500 text-sm animate-pulse">Waiting for your opponent…</p>}
-      {seating === 'hot_seat' && !isOver && <p className="text-neutral-400 text-sm">Player {role} to choose</p>}
+      {seating === 'solo_playtest' && !isOver &&<p className="text-neutral-400 text-sm">Player {role} to choose</p>}
       {role === 'spectator' && <p className="text-purple-400 text-sm">Spectating</p>}
     </div>
   )

@@ -1,7 +1,7 @@
 @import "tailwindcss";
 @import "game-kit/theme.css";
 
-/* GameKit's screens (lobby, waiting, handoff) use these tokens; this template's
+/* GameKit's screens (lobby, waiting, between plans) use these tokens; this template's
    example game is dark, so they are set to match it. Change them to restyle. */
 @theme {
   --color-ground: #171717;

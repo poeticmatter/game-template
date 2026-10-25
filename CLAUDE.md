@@ -21,7 +21,7 @@ The multiplayer platform (lobby, transports, status screens) is **GameKit**'s `g
 
 - `src/game/`: the game. Pure rules (`rules.ts`, tested in `rules.test.ts`), React UI (`Board.tsx`, `SettingsForm.tsx`), and `index.ts` exporting `game: GameModule`.
 - `src/game.config.ts`: `GAME_CONFIG`: the game id, title, tagline, and Supabase settings read from `.env.local`.
-- `src/App.tsx`: renders `<SimultaneousGameApp config={GAME_CONFIG} game={game} />`. GameKit routes on the URL (`?room=CODE[&mode=async]`); hot-seat matches have no URL.
+- `src/App.tsx`: renders `<SimultaneousGameApp config={GAME_CONFIG} game={game} />`. GameKit routes on the URL (`?room=CODE[&mode=async]`); solo playtests have no URL.
 - `src/index.css`: Tailwind, GameKit's theme (`game-kit/theme.css`), and the colour tokens GameKit's screens use.
 
 ### Rules contract
@@ -33,7 +33,7 @@ The multiplayer platform (lobby, transports, status screens) is **GameKit**'s `g
 
 - **Live (PeerJS)**: the room creator is player 1 and the only peer that runs rules; the guest is player 2 or a spectator. Commit-and-hold: the host's plan is held until the guest's arrives, so the host gets no information advantage.
 - **Async (Supabase)**: one row per room in this game's own table (`<game-id>_games`, defined in `supabase/migrations/`) on the Supabase project shared by all lab games. Writes are guarded on the `turn` column.
-- **Hot seat**: both players share one device; a handoff screen hides the board while the device changes hands. The Board gets `seating: 'hot_seat'` and `role` is the player at the device.
+- **Solo playtest**: one tester enters both players' plans on this device, with a screen between them naming whose plan comes next. The Board gets `seating: 'solo_playtest'` and `role` is the player being planned for.
 
 ## Rules
 

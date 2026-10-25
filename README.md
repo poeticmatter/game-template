@@ -6,7 +6,7 @@ You get, from [GameKit](https://github.com/poeticmatter/GameKit) (`game-kit/simu
 
 - **Live play** over PeerJS (peer to peer, no server), with spectators
 - **Async play** backed by Supabase (turns are saved, so players can move at any time)
-- **Hot seat**: both players share one device, with a pass-the-device screen between inputs
+- **Solo playtest**: play both sides yourself on one device, with a screen between plans naming whose comes next
 - A lobby, share links, reconnection, and GitHub Pages deployment
 
 The example game in `src/game/` is rock-paper-scissors. Replace it with your own.
@@ -48,7 +48,7 @@ A game provides a `GameModule` (types from `game-kit/simultaneous`):
 
 - `rules.createInitialState(settings)` and `rules.resolveTurn(state, p1Plan, p2Plan)`. These must be **pure and deterministic**, because in async play either client may resolve a turn. For randomness, keep a seed in the state and use GameKit's `nextRandom`.
 - The state and every plan carry `turn: number`, which the transports use to reject stale plans.
-- `Board` receives `state`, `role` (`1 | 2 | 'spectator'`), `hasCommitted`, `onSubmitPlan` and `seating`. In hot seat, `seating` is `'hot_seat'` and `role` is whichever player holds the device, so name players by number rather than "You".
+- `Board` receives `state`, `role` (`1 | 2 | 'spectator'`), `hasCommitted`, `onSubmitPlan` and `seating`. In a solo playtest, `seating` is `'solo_playtest'` and `role` is the player being planned for, so name players by number rather than "You".
 - `SettingsForm` edits the settings in the lobby.
 
 GameKit's screens take their colours from the tokens in `src/index.css`.
