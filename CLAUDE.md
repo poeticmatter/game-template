@@ -35,6 +35,19 @@ The multiplayer platform (lobby, transports, status screens) is **GameKit**'s `g
 - **Async (Supabase)**: one row per room in this game's own table (`<game-id>_games`, defined in `supabase/migrations/`) on the Supabase project shared by all lab games. Writes are guarded on the `turn` column.
 - **Solo playtest**: one tester enters both players' plans on this device, with a screen between them naming whose plan comes next. The Board gets `seating: 'solo_playtest'` and `role` is the player being planned for.
 
+## Rules document and design log
+
+Claude keeps two documents in `docs/` and updates them in the same change as the work they describe, without being asked:
+
+- **`docs/rules.md`**: the game's rules as it plays them now, in plain language, as a new player would read them: what you're trying to do, what's on the table, setup, a turn, how it ends. No code names, file paths or jargon. Every change to the rules or content updates it, so it always matches the game.
+- **`docs/design-log.md`**: what changed and why, newest first, in two sections:
+  - **Game design**: the game itself: rules, content (map, tiles, cards, numbers and dials) and balance.
+  - **Game development**: everything else: the board and UI, visuals, GameKit bumps, bots, tooling, and fixes that don't change the rules.
+
+  One entry per change, headed by its date and a short title, in the section it belongs to; a change that does both gets an entry in each. Say what changed for players and, when it's known, why. Leave how it was built to the commits.
+
+Both start out describing the example game, rock-paper-scissors. When a new game replaces it, rewrite `rules.md` for that game and replace the template's log entries with the game's own, starting from "Started from the game template". If the designer has their own rules text, keep it as a separate file in `docs/` and let `rules.md` describe what the game plays, including the calls it makes where that text leaves a question open.
+
 ## Rules
 
 - All state changes go through `rules.resolveTurn`. UI components only render state and submit plans.

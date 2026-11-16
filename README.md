@@ -22,7 +22,7 @@ The example game in `src/game/` is rock-paper-scissors. Replace it with your own
    This sets the Pages path, the title, and the game id. The game id names the Supabase table (`spiral_games`), and it prefixes the PeerJS room ids and localStorage keys so lab games never collide.
 3. Run the renamed migration in `supabase/migrations/` in the shared Supabase project.
 4. Copy `.env.local` from any other lab game (every game uses the same Supabase project).
-5. Replace `src/game/` with your game, update this README, then run `npm run deploy`.
+5. Replace `src/game/` with your game, rewrite `docs/rules.md` and start `docs/design-log.md` for it, update this README, then run `npm run deploy`.
 6. Add the game to the hub's `games.json` in [poeticmatter/game-lab](https://github.com/poeticmatter/game-lab).
 
 ## Structure
@@ -38,6 +38,9 @@ src/
 │   └── SettingsForm.tsx
 ├── index.css        # Tailwind, GameKit's theme, and this game's colours
 └── App.tsx          # <SimultaneousGameApp config={GAME_CONFIG} game={game} />
+docs/
+├── rules.md         # the rules in plain language, as the game plays them now
+└── design-log.md    # what changed and why: game design, then game development
 ```
 
 The lobby, transports and status screens live in GameKit, pinned in `package.json` to a release tag. To change them, change GameKit, tag a release, and bump the version here.
